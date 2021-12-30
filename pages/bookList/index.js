@@ -87,6 +87,7 @@ export default function BookList({
 
     const router = useRouter();
     const handleEdit = (id) => {
+        return
         router.push({
             pathname: `bookEdit/${id}`,
             asPath: "bookEdit/[_id]"
@@ -94,6 +95,7 @@ export default function BookList({
     }
 
     const handleEditQty = (id) => {
+        return
         router.push({
             pathname: `qtyOnly/${id}`,
         })

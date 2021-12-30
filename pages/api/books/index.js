@@ -4,7 +4,7 @@ import Books from '../../../models/books'
 export default async function handler(req, res) {
     const { method } = req;
 
-
+console.log("REQUEST",req);
     const db = await dbConnect();
 
     switch (method) {

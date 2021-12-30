@@ -43,6 +43,8 @@ export default function Home({
         formState: { errors, isSubmitting, isSubmitSuccessful },
         reset
     } = useForm();
+    const[loading,setLoading] = useState(false);
+
 
 
     function onSubmit(values) {
@@ -66,16 +68,22 @@ export default function Home({
     }
 
     async function addMeetupHandler(enterMeetupData) {
-        const responce = await fetch('/api/books', {
-            method: 'POST',
-            body: JSON.stringify(enterMeetupData),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const data = await responce.json();
-        //await responce 
-        console.log("[addMeetupHandler]", data);
+        try {
+            setLoading(true);
+            const responce = await fetch('/api/books', {
+                method: 'POST',
+                body: JSON.stringify(enterMeetupData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await responce.json();
+            
+        } catch (error) {
+            
+        }finally{
+            location.reload();
+        }
     }
 
 
@@ -159,6 +167,7 @@ export default function Home({
                                 </HStack>
                                 <Box minW="full" maxW="full">
                                     <Button
+                                    disabled={loading}
                                         type="submit"
                                         bg={'blue.400'}
                                         minW="full" maxW="full"
